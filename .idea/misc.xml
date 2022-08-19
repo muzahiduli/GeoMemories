@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/Users/muzah/AndroidStudioProjects/GeoMemories/app/src/main/res/layout/activity_main.xml" value="0.3972911963882618" />
         <entry key="..\:/Users/muzah/AndroidStudioProjects/GeoMemories/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/muzah/AndroidStudioProjects/GeoMemories/app/src/main/res/layout/fragment_feed.xml" value="0.25625" />
         <entry key="..\:/Users/muzah/AndroidStudioProjects/GeoMemories/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/muzah/AndroidStudioProjects/GeoMemories/app/src/main/res/layout/fragment_map.xml" value="0.25625" />
         <entry key="..\:/Users/muzah/AndroidStudioProjects/GeoMemories/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/muzah/AndroidStudioProjects/GeoMemories/app/src/main/res/layout/fragment_settings.xml" value="0.25625" />
         <entry key="..\:/Users/muzah/AndroidStudioProjects/GeoMemories/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
