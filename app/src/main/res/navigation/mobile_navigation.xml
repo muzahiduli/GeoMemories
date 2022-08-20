@@ -9,7 +9,11 @@
         android:id="@+id/navigation_feed"
         android:name="com.example.geomemories.ui.feed.FeedFragment"
         android:label="@string/title_feed"
-        tools:layout="@layout/fragment_feed" />
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_navigation_feed_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_map"
@@ -22,4 +26,15 @@
         android:name="com.example.geomemories.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="com.example.geomemories.ui.feed.CreateEventFragment"
+        android:label="Add Event"
+        tools:layout="@layout/fragment_create_event">
+        <action
+            android:id="@+id/action_createEventFragment_to_navigation_feed"
+            app:destination="@id/navigation_feed"
+            app:popUpTo="@id/navigation_feed"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
