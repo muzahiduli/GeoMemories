@@ -36,5 +36,16 @@
             app:destination="@id/navigation_feed"
             app:popUpTo="@id/navigation_feed"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_createEventFragment_to_createRouteFragment"
+            app:destination="@id/createRouteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createRouteFragment"
+        android:name="com.example.geomemories.ui.feed.CreateRouteFragment"
+        android:label="Add Route">
+        <action
+            android:id="@+id/action_createRouteFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
     </fragment>
 </navigation>

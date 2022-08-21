@@ -15,12 +15,13 @@ class FeedViewModel(private val eventDao: EventDao) : ViewModel() {
 
     val events: LiveData<List<Event>> = eventDao.getEvents().asLiveData()
 
-    fun addEvent(notes: String, date: Int, latitude: Double, longitude: Double) {
-        val newEvent = Event(notes=notes, date = date, longitude = longitude, latitude = latitude )
+    fun addEvent(notes: String, date: Int, latitude: Double, longitude: Double, image: String? = null) {
+        val newEvent = Event(notes=notes, date = date, longitude = longitude, latitude = latitude, image = image)
         viewModelScope.launch {
             eventDao.addEvent(newEvent)
         }
     }
+
 
 }
 

@@ -1,0 +1,21 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-geomemories-dev-170346-authRole",
+      "UnauthRoleArn": "arn:aws:iam::252086661859:role/amplify-geomemories-dev-170346-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::252086661859:role/amplify-geomemories-dev-170346-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-geomemories-dev-170346-deployment",
+      "UnauthRoleName": "amplify-geomemories-dev-170346-unauthRole",
+      "StackName": "amplify-geomemories-dev-170346",
+      "StackId": "arn:aws:cloudformation:us-east-1:252086661859:stack/amplify-geomemories-dev-170346/947db670-20cb-11ed-b508-0aff72a42f4b",
+      "AmplifyAppId": "dn7qw2l281bpu"
+    },
+    "categories": {
+      "auth": {
+        "geomemories9ee6123c": {},
+        "true": {}
+      }
+    }
+  }
+}

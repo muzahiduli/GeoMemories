@@ -1,5 +1,6 @@
 package com.example.geomemories.database
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -20,5 +21,9 @@ data class Event (
     val longitude: Double,
 
     @ColumnInfo(name = "latitude")
-    val latitude: Double
+    val latitude: Double,
+
+    // Image path on S3 bucket
+    @Nullable @ColumnInfo(name = "image")
+    val image: String?
 )

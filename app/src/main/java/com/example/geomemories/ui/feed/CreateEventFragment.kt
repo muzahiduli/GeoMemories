@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.icu.lang.UCharacter.GraphemeClusterBreak.L
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -23,14 +24,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
+import com.amplifyframework.core.Amplify
 import com.example.geomemories.GeoMemoriesApplication
 import com.example.geomemories.MainActivity
 import com.example.geomemories.databinding.FragmentCreateEventBinding
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import java.io.File
 import java.lang.Error
 import java.net.URI
+import java.util.*
 
 
 class CreateEventFragment : Fragment() {
@@ -48,6 +50,9 @@ class CreateEventFragment : Fragment() {
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private var location: Location? = null
     private var uri: Uri? = null
+    private var file: File? = null
+    // On S3 public/user1 are folders and event3 is a file
+    private var bucketKey: String = "user1/" + UUID.randomUUID().toString()
 
 
     // Inflate layout and return the root element of it
@@ -89,11 +94,17 @@ class CreateEventFragment : Fragment() {
                 val longitude: Double = location!!.longitude
                 val latitude: Double = location!!.latitude
 
+                Amplify.Storage.uploadFile(bucketKey,
+                    file!!,
+                    { Log.i("MyAmplifyApp", "Successfully uploaded: ${it.key}") },
+                    { Log.e("MyAmplifyApp", "Upload failed", it) }
+                )
                 viewModel.addEvent(
                     notes = binding.eventNotes.text.toString(),
                     date = (System.currentTimeMillis() / 1000L).toInt(),
                     longitude = longitude,
-                    latitude = latitude
+                    latitude = latitude,
+                    image = bucketKey
                 )
                 goBack()
             }
@@ -106,13 +117,19 @@ class CreateEventFragment : Fragment() {
 //        getExternalFilesDir(Environment.DIRECTORY_PICTURES), "EventPhoto.jpg")
         binding.captureImageButton.setOnClickListener {
             val takePictureIntent: Intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            val file: File = File(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "EventPhoto.jpg")
-            uri = FileProvider.getUriForFile(requireContext(), requireContext().packageName + ".provider", file)
+            file = File(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "EventPhoto.jpg")
+            uri = FileProvider.getUriForFile(requireContext(), requireContext().packageName + ".provider", file!!)
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
 
             try {
                 launchCamera.launch(takePictureIntent)
             } catch (e: Error) {}
+        }
+
+        // Switch to route screen
+        binding.routeButton.setOnClickListener {
+            val action = CreateEventFragmentDirections.actionCreateEventFragmentToCreateRouteFragment()
+            findNavController().navigate(action)
         }
 
     }

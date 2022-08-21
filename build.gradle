@@ -2,8 +2,11 @@
 
 buildscript {
     ext {
+        ext.versions = [:]
         room_version = "2.4.3"
         nav_version = "2.5.1"
+        multidex_version = "2.0.1"
+        versions.work = "2.7.1"
     }
 
     repositories {
